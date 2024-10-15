@@ -1,14 +1,5 @@
-# Usa una imagen base
-FROM nginx:latest
+# Usa una imagen base de Alpine Linux
+FROM alpine:latest
 
-# Establece el directorio de trabajo
-WORKDIR /usr/share/nginx/html
-
-# Copia archivos locales al contenedor
-COPY ./html /usr/share/nginx/html
-
-# Expone el puerto
-EXPOSE 80
-
-# Comando por defecto
-CMD ["nginx", "-g", "daemon off;"]
+# Comando que se ejecutará cuando se inicie el contenedor
+CMD ["echo", "Hello, World!"]

@@ -26,11 +26,9 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     # Paso 4: Construir y publicar la imagen en Docker Hub
-- name: Build and push Docker image
-  uses: docker/build-push-action@v2
-  with:
-    context: .  # Contexto actual (el Dockerfile debe estar en el directorio raíz)
-    push: true  # Subir la imagen a Docker Hub
-    tags: darkpenetrator/myimage:${{ github.ref_name }}  # El tag será el mismo que el tag en GitHub
-
-
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .  # Contexto actual (el Dockerfile debe estar en el directorio raíz)
+        push: true  # Subir la imagen a Docker Hub
+        tags: darkpenetrator/myimage:${{ github.ref_name }}  # El tag será el mismo que el tag en GitHub

@@ -3,32 +3,28 @@ name: Publish Docker Image to Docker Hub
 on:
   push:
     tags:
-      - 'v*'  # El trigger se activa cuando creas un tag que empieza con "v"
+      - 'v*'  
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    # Paso 1: Checkout del repositorio
     - name: Check out the repository
       uses: actions/checkout@v2
 
-    # Paso 2: Configurar Docker Buildx
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
-    # Paso 3: Loguearse en Docker Hub
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    # Paso 4: Construir y publicar la imagen en Docker Hub
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
-        context: .  # Contexto actual (el Dockerfile debe estar en el directorio raíz)
-        push: true  # Subir la imagen a Docker Hub
-        tags: darkpenetrator/myimage:${{ github.ref_name }}  # El tag será el mismo que el tag en GitHub
+        context: .  
+        push: true  
+        tags: darkpenetrator/myimage:${{ github.ref_name }}  
